@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 14db4c5ef989bfb4791bc92c701ae49e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - catSound: {fileID: 8300000, guid: d43b534b21c25f24f863cf6e85ee63d6, type: 3}
+  - dogSound: {fileID: 8300000, guid: 1caebd507d1fd144080500715a081535, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 675e99a780178104b8817e0f8eeb7d12
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - FishPrefab: {fileID: 5953216124815731717, guid: aeb979f73a91d1a4f82e21d19cf30964, type: 3}
+  - MeatPrefab: {fileID: 9147206742664564984, guid: 53788582138a4a749ae79971459a9016, type: 3}
+  - Food: {instanceID: 0}
+  - ShootSound: {fileID: 8300000, guid: fc5903f5c011a0342b42564f6ddd0b67, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
