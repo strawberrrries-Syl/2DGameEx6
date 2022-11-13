@@ -3,7 +3,11 @@ guid: 206b61d7d97b39e45b960804085eecb5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - CatPrefab: {fileID: 3682597332001106210, guid: 6f42a6ce0d6c6874ca8ba3140ccaf62c, type: 3}
+  - DogPrefab: {fileID: 7823016385274992148, guid: 98536f7590349c345ac78935eb75e65a, type: 3}
+  - StartPrefab: {fileID: 7611188718789872481, guid: ec6a0af57449a0142bd9bc35789644a8, type: 3}
+  - StartPic: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

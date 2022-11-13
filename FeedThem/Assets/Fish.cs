@@ -35,6 +35,7 @@ public class Fish : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         var rb = GetComponent<Rigidbody2D>();
+        var pet = collision.collider.GetComponent<Pet>();
         if (rb.velocity.y < 0.1)
         {
             return;
@@ -42,12 +43,13 @@ public class Fish : MonoBehaviour
         // feed to cat
         if (collision.collider.CompareTag("Cat"))
         {
-            //collider does not have an Orb component
             catSource.PlayOneShot(catSound, 1f);
-            Invoke("DestroySelf", 0.5f);
-        } else if (collision.collider.CompareTag("Dog")) { 
+            Invoke("DestroySelf", 0.3f);
+        }
+        else if (collision.collider.CompareTag("Dog"))
+        {
             dogSource.PlayOneShot(dogSound, 1f);
-            Invoke("DestroySelf", 0.5f);
+            Invoke("DestroySelf", 0.3f);
         }
     }
 

@@ -36,6 +36,7 @@ public class Meat : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         var rb = GetComponent<Rigidbody2D>();
+        var pet = collision.collider.GetComponent<Pet>();
         if (rb.velocity.y < 0.1)
         {
             return;
@@ -44,12 +45,12 @@ public class Meat : MonoBehaviour
         if (collision.collider.CompareTag("Cat"))
         {
             catSource.PlayOneShot(catSound, 1f);
-            Invoke("DestroySelf", 0.5f);
+            Invoke("DestroySelf", 0.3f);
         }
         else if (collision.collider.CompareTag("Dog"))
         {
             dogSource.PlayOneShot(dogSound, 1f);
-            Invoke("DestroySelf", 0.5f);
+            Invoke("DestroySelf", 0.3f);
         }
     }
 }

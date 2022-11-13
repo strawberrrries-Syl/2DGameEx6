@@ -8,23 +8,41 @@ public class PetSpawner : MonoBehaviour
     public GameObject CatPrefab;
     public GameObject DogPrefab;
 
+    public GameObject StartPrefab;
+    /*Rigidbody2D m_rigid2D;*/
+    private GameObject StartPic;
+
+    bool start = false;
+
     float moveSpeed = 1.5f;
     float t = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartPic = Instantiate(StartPrefab);
+        StartPic.transform.position = new Vector3 (0,0,0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > t)
+        if (Input.GetKeyDown("r") && !start)
         {
-            geneNewPet(moveSpeed, 5.5f);
-            t += Random.Range(1f, 4f);
-            moveSpeed = Random.Range(0, 4);
+            start = true;
+            var rd = StartPic.GetComponent<SpriteRenderer>();
+            rd.enabled = false;
         }
+
+        if (start)
+        {
+            if (Time.time > t)
+            {
+                geneNewPet(moveSpeed, 5.5f);
+                t += Random.Range(1f, 4f);
+                moveSpeed = Random.Range(0, 4);
+            }
+        }
+
     }
 
     void geneNewPet(float s, float y) {

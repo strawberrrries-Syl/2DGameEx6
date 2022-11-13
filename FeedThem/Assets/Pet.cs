@@ -62,6 +62,7 @@ public class Pet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+
         // feed to cat
         if (collision.collider.CompareTag("Meat") || collision.collider.CompareTag("Fish"))
         {
