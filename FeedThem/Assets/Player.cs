@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         m_rigid2D = GetComponent<Rigidbody2D>();
         m_rigid2D.freezeRotation = true;
         Food = generateFood();
-        m_f_rigid2D = GetComponent<Rigidbody2D>();
+        m_f_rigid2D = Food.GetComponent<Rigidbody2D>();
         m_f_rigid2D.freezeRotation = true;
         ShootSource = GetComponent<AudioSource>();
     }
@@ -38,13 +38,14 @@ public class Player : MonoBehaviour
         var moveV = new Vector2(Input.GetAxis("Horizontal"), 0);
         moveV *= speed;
         m_rigid2D.AddForce(moveV);
-        m_f_rigid2D.AddForce(moveV);
+        /*m_f_rigid2D.position = m_rigid2D.position;*/
+        Food.transform.position = transform.position + 1 * transform.up;
 
         if (Input.GetAxis("Fire") == 1)
         {
             Fire();
             Food = generateFood();
-            m_f_rigid2D = GetComponent<Rigidbody2D>();
+            m_f_rigid2D = Food.GetComponent<Rigidbody2D>();
             m_f_rigid2D.freezeRotation = true;
         }
     }
@@ -53,7 +54,8 @@ public class Player : MonoBehaviour
     private GameObject generateFood() {
         GameObject food;
         float flag = Random.Range(-1, 1);
-        if (flag > 0)   // meat
+        Debug.Log(flag);
+        if (flag < 0)   // meat
         {
             food = Instantiate(MeatPrefab);
         }
@@ -66,7 +68,7 @@ public class Player : MonoBehaviour
 
     // shoot the food
     private void Fire() {
-        ShootSource.PlayOneShot(ShootSound, 1f);
+        /*ShootSource.PlayOneShot(ShootSound, 1f);*/
         Food.GetComponent<Rigidbody2D>().velocity = bulletSpeed * transform.up;
     }
 }

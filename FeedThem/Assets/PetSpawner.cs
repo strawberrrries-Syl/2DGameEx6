@@ -9,8 +9,6 @@ public class PetSpawner : MonoBehaviour
     public GameObject DogPrefab;
 
     float moveSpeed = 1.5f;
-
-    static float interval1 = 3.5f;
     float t = 0;
     // Start is called before the first frame update
     void Start()
