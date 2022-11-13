@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,6 +32,8 @@ public class Player : MonoBehaviour
         ShootSource = GetComponent<AudioSource>();
     }
 
+
+    int cNum = 10;
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -43,18 +46,32 @@ public class Player : MonoBehaviour
 
         if (Input.GetAxis("Fire") == 1)
         {
-            Fire();
-            Food = generateFood();
-            m_f_rigid2D = Food.GetComponent<Rigidbody2D>();
-            m_f_rigid2D.freezeRotation = true;
+            if (cNum > 5)
+            {
+                Fire();
+                cNum = 0;
+            }
+            else {
+                cNum++;
+            }
         }
+
+    }
+
+    private void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void OnBecameInvisible()
+    {
+        Invoke("ResetGame", 1f);
     }
 
     // generate meat or fish randomly
     private GameObject generateFood() {
         GameObject food;
-        float flag = Random.Range(-1, 1);
-        Debug.Log(flag);
+        float flag = UnityEngine.Random.Range(-1, 1);
         if (flag < 0)   // meat
         {
             food = Instantiate(MeatPrefab);
@@ -70,5 +87,8 @@ public class Player : MonoBehaviour
     private void Fire() {
         /*ShootSource.PlayOneShot(ShootSound, 1f);*/
         Food.GetComponent<Rigidbody2D>().velocity = bulletSpeed * transform.up;
+        Food = generateFood();
+        m_f_rigid2D = Food.GetComponent<Rigidbody2D>();
+        m_f_rigid2D.freezeRotation = true;
     }
 }

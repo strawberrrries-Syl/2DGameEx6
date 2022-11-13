@@ -22,28 +22,28 @@ public class PetSpawner : MonoBehaviour
         if (Time.time > t)
         {
             geneNewPet(moveSpeed, 5.5f);
-            t += Random.Range(1.5f, 2.5f);
-            moveSpeed = Random.Range(1, 3);
+            t += Random.Range(1f, 4f);
+            moveSpeed = Random.Range(0, 4);
         }
     }
 
     void geneNewPet(float s, float y) {
-        float pick = Random.Range(0, 1);
+        float pick = Random.Range(-1, 1);
         GameObject g;
-        if (pick < 0.5f)
+        if (pick < 0)
         {
             g = Instantiate(CatPrefab);
-
         }
         else {
             g = Instantiate(DogPrefab);
         }
 
         var p = g.GetComponent<Pet>();
-        var x = Random.Range(-8, 8);
+        var x = Random.Range(-8, 9);
         p.transform.position = new Vector2(x, y);
         var rb = g.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(0, -moveSpeed);
+        rb.freezeRotation = true;
         
     }
 }

@@ -17,6 +17,7 @@ public class Pet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Sprite = GetComponent<SpriteRenderer>();
         int pick = Random.Range(0, 5);
         if (tag == "Cat")
         {
