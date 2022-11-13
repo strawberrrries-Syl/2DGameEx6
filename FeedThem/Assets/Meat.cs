@@ -44,11 +44,13 @@ public class Meat : MonoBehaviour
         // feed to cat
         if (collision.collider.CompareTag("Cat"))
         {
+            ScoreKeeper.ScorePoints(-2);
             catSource.PlayOneShot(catSound, 1f);
             Invoke("DestroySelf", 0.3f);
         }
         else if (collision.collider.CompareTag("Dog"))
         {
+            ScoreKeeper.ScorePoints(5);
             dogSource.PlayOneShot(dogSound, 1f);
             Invoke("DestroySelf", 0.3f);
         }

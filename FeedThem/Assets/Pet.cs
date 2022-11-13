@@ -14,6 +14,8 @@ public class Pet : MonoBehaviour
     public Sprite Dog4;
 
     SpriteRenderer Sprite;
+
+    bool counted = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,7 @@ public class Pet : MonoBehaviour
 
     void OnBecameInvisible()
     {
+        ScoreKeeper.ScorePoints(-2);
         Destroy(gameObject);
     }
 
@@ -66,12 +69,18 @@ public class Pet : MonoBehaviour
         // feed to cat
         if (collision.collider.CompareTag("Meat") || collision.collider.CompareTag("Fish"))
         {
+            ProcessKeeper.Process(1);
             Destroy(gameObject);
         }
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.position.y < -4 && !counted)
+        {
+            counted = true;
+            Debug.Log("position: " + transform.position.y);
+            MissedTracker.MissedPoint(1);
+        }
     }
 }

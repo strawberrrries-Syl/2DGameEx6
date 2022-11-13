@@ -35,9 +35,16 @@ public class Player : MonoBehaviour
 
 
     int cNum = 10;
+    int breakNum = 5;   // the number all the babies heart break
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        if (MissedTracker.GetMissedNum() > breakNum)
+        {
+            MissedTracker.ResetPoint();
+            ResetGame();
+        }
         // control the hand
         var moveV = new Vector2(Input.GetAxis("Horizontal"), 0);
         moveV *= speed;
