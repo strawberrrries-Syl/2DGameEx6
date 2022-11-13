@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     {
         m_rigid2D = GetComponent<Rigidbody2D>();
         m_rigid2D.freezeRotation = true;
-        Food = generateFood();
+        /*Food = */generateFood();
         m_f_rigid2D = Food.GetComponent<Rigidbody2D>();
         m_f_rigid2D.freezeRotation = true;
 
@@ -42,20 +42,18 @@ public class Player : MonoBehaviour
         var moveV = new Vector2(Input.GetAxis("Horizontal"), 0);
         moveV *= speed;
         m_rigid2D.AddForce(moveV);
-        Food.transform.position = transform.position + 1 * transform.up;
 
         if (Input.GetAxis("Fire") == 1)
         {
-            if (cNum > 5)
+            if (cNum > 50)
             {
                 Fire();
                 cNum = 0;
             }
-            else {
-                cNum++;
-            }
         }
-
+        cNum++;
+        
+        Food.transform.position = transform.position + 1 * transform.up;
     }
 
     private void ResetGame()
@@ -69,18 +67,18 @@ public class Player : MonoBehaviour
     }
 
     // generate meat or fish randomly
-    private GameObject generateFood() {
-        GameObject food;
+    private void generateFood()
+    {
         float flag = UnityEngine.Random.Range(-1, 1);
         if (flag < 0)   // meat
         {
-            food = Instantiate(MeatPrefab);
+            Food = Instantiate(MeatPrefab);
         }
-        else {
-            food = Instantiate(FishPrefab);
+        else
+        {
+            Food = Instantiate(FishPrefab);
         }
-        food.transform.position = transform.position + 1 * transform.up;
-        return food;
+        Food.transform.position = transform.position; /*+1 * transform.up;*/
     }
 
     // shoot the food
@@ -88,7 +86,8 @@ public class Player : MonoBehaviour
 
         ShootSource.PlayOneShot(ShootSound, 1f);
         Food.GetComponent<Rigidbody2D>().velocity = bulletSpeed * transform.up;
-        Food = generateFood();
+        generateFood();
+        /*Food = generateFood();*/
         m_f_rigid2D = Food.GetComponent<Rigidbody2D>();
         m_f_rigid2D.freezeRotation = true;
     }

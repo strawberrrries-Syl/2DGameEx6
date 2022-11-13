@@ -28,15 +28,26 @@ public class Fish : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void DestroySelf() {
+        Destroy(gameObject);
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
+        var rb = GetComponent<Rigidbody2D>();
+        if (rb.velocity.y < 0.1)
+        {
+            return;
+        }
         // feed to cat
         if (collision.collider.CompareTag("Cat"))
         {
             //collider does not have an Orb component
             catSource.PlayOneShot(catSound, 1f);
+            Invoke("DestroySelf", 0.5f);
         } else if (collision.collider.CompareTag("Dog")) { 
             dogSource.PlayOneShot(dogSound, 1f);
+            Invoke("DestroySelf", 0.5f);
         }
     }
 

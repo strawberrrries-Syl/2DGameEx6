@@ -55,6 +55,19 @@ public class Pet : MonoBehaviour
         }
     }
 
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // feed to cat
+        if (collision.collider.CompareTag("Meat") || collision.collider.CompareTag("Fish"))
+        {
+            Destroy(gameObject);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
