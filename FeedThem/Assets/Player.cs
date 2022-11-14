@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     public AudioClip ShootSound;
     AudioSource ShootSource;
 
+    public AudioClip SuccessSound;
+    AudioSource SuccessSource;
+
     float speed = 8f;
     float bulletSpeed = 2f;
 
@@ -34,6 +37,7 @@ public class Player : MonoBehaviour
         m_f_rigid2D.freezeRotation = true;
 
         ShootSource = GetComponent<AudioSource>();
+        SuccessSource = GetComponent<AudioSource>();
 
 
         WinObj = Instantiate(WinPrefab);
@@ -51,6 +55,9 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown("c"))
             ResetGame();
     }
+
+    bool firstTimePlay = true;
+
     void FixedUpdate()
     {
         if (MissedTracker.GetMissedNum() > breakNum)
@@ -63,6 +70,12 @@ public class Player : MonoBehaviour
         if (ProcessKeeper.GetProcessNum() > 1)
         {
             Status.FreezeStatus();
+            if (firstTimePlay)
+            {
+                SuccessSource.PlayOneShot(SuccessSound, 1f);
+                firstTimePlay = false;
+            }
+            
             var rbwin = WinObj.GetComponent<SpriteRenderer>();
             rbwin.enabled = true;
         }
@@ -89,8 +102,9 @@ public class Player : MonoBehaviour
     }
 
     private void ResetGame()
-    {
-        Debug.Log("reset");
+    {/*
+        Debug.Log("reset");*/
+        firstTimePlay = true;
         Destroy(WinObj);
         Status.ResetStatus();
         ProcessKeeper.ResetProcess();
