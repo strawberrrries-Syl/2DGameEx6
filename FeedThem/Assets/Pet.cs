@@ -79,7 +79,6 @@ public class Pet : MonoBehaviour
         if (transform.position.y < -4 && !counted)
         {
             counted = true;
-            Debug.Log("position: " + transform.position.y);
             MissedTracker.MissedPoint(1);
         }
     }

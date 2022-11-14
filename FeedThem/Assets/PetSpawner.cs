@@ -33,13 +33,13 @@ public class PetSpawner : MonoBehaviour
             rd.enabled = false;
         }
 
-        if (start)
+        if (start && Status.GetStatus())
         {
             if (Time.time > t)
             {
                 geneNewPet(moveSpeed, 5.5f);
-                t += Random.Range(1f, 4f);
-                moveSpeed = Random.Range(0, 4);
+                t += Random.Range(3f, 5f);
+                moveSpeed = Random.Range(0, 3);
             }
         }
 

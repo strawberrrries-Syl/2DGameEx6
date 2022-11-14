@@ -14,7 +14,16 @@ public class ProcessKeeper : MonoBehaviour
         Singleton.ProcessInternal(points);
     }
 
-    public int process;
+    public static int GetProcessNum()
+    {
+        return Singleton.GetProcessNumInternal();
+    }
+
+    public static void ResetProcess() {
+        Singleton.ResetProcessInternal();
+    }
+
+    public static int process;
 
 
     private TMP_Text processDisplay;
@@ -27,12 +36,22 @@ public class ProcessKeeper : MonoBehaviour
         ProcessInternal(0);
     }
 
+    private int sum = 10;
     private void ProcessInternal(int delta)
     {
-        // DONE
         process += delta;
-        /*scoreDisplay.text = Score.ToString();*/
-        processDisplay.text = $"Process: {process / 30 * 100} %";
+        processDisplay.text = $"Process: {process* 100 / sum } %";
+    }
+
+    private int GetProcessNumInternal()
+    {
+        return process / sum * 100;
+    }
+
+    private void ResetProcessInternal()
+    {
+        process = 0;
+        processDisplay.text = $"Process: 0 %";
     }
 }
 

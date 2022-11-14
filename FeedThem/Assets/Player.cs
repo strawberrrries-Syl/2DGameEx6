@@ -18,8 +18,11 @@ public class Player : MonoBehaviour
     public AudioClip ShootSound;
     AudioSource ShootSource;
 
-    float speed = 10f;
+    float speed = 8f;
     float bulletSpeed = 2f;
+
+    public GameObject WinPrefab;
+    private GameObject WinObj;
 
     // Start is called before the first frame update
     void Start()
@@ -31,19 +34,37 @@ public class Player : MonoBehaviour
         m_f_rigid2D.freezeRotation = true;
 
         ShootSource = GetComponent<AudioSource>();
+
+
+        WinObj = Instantiate(WinPrefab);
+        WinObj.transform.position = new Vector2(0, 0);
+        var rbwin = WinObj.GetComponent<SpriteRenderer>();
+        rbwin.enabled = false;
     }
 
 
     int cNum = 10;
-    int breakNum = 5;   // the number all the babies heart break
+    int breakNum = 100;   // the number all the babies heart break
     // Update is called once per frame
+    private void Update()
+    {
+        if(Input.GetKeyDown("c"))
+            ResetGame();
+    }
     void FixedUpdate()
     {
-
         if (MissedTracker.GetMissedNum() > breakNum)
         {
-            MissedTracker.ResetPoint();
             ResetGame();
+        }
+
+
+        // win
+        if (ProcessKeeper.GetProcessNum() > 1)
+        {
+            Status.FreezeStatus();
+            var rbwin = WinObj.GetComponent<SpriteRenderer>();
+            rbwin.enabled = true;
         }
         // control the hand
         var moveV = new Vector2(Input.GetAxis("Horizontal"), 0);
@@ -59,12 +80,21 @@ public class Player : MonoBehaviour
             }
         }
         cNum++;
+
+        if (Food != null)
+        { 
+            Food.transform.position = transform.position + 1 * transform.up;
+        }
         
-        Food.transform.position = transform.position + 1 * transform.up;
     }
 
     private void ResetGame()
     {
+        Debug.Log("reset");
+        Destroy(WinObj);
+        Status.ResetStatus();
+        ProcessKeeper.ResetProcess();
+        MissedTracker.ResetPoint();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

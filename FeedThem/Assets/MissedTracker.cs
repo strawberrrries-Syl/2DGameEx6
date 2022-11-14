@@ -11,19 +11,15 @@ public class MissedTracker : MonoBehaviour
 
     public static void MissedPoint(int points)
     {
-        Debug.Log("Missed Now: " + missed);
         Singleton.MissedInternal(points);
     }
 
     public static void ResetPoint()
     {
-        Debug.Log("Reset Missed");
         Singleton.resetInternal();
     }
 
     public static int missed;
-
-
     private TMP_Text missedDisplay;
 
     void Start()
