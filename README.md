@@ -13,10 +13,12 @@ sad and make you restart feeding (restart the game).
 ![alt text](https://github.com/strawberrrries-Syl/2DGameEx6/blob/master/Assets/dog2.png)
 ![alt text](https://github.com/strawberrrries-Syl/2DGameEx6/blob/master/Assets/dog3.png)
 ![alt text](https://github.com/strawberrrries-Syl/2DGameEx6/blob/master/Assets/dog4.png)
+
 They are cats and dogs you will meet. Feed them with the correct kinds of food!
 ### Foods
 ![alt text](https://github.com/strawberrrries-Syl/2DGameEx6/blob/master/Assets/fish.png)
 ![alt text](https://github.com/strawberrrries-Syl/2DGameEx6/blob/master/Assets/meat.png)
+
 Foods for them. You might get meat or fish as your “bullet” and “shoot” at them. Shoot
 by pressing the button “ctrl” or the mouse left key.
 *  If cats get fish or dogs get meat, they will eat the food. You will get 5 points each
@@ -25,9 +27,12 @@ time feed them correctly.
 time feed them incorrectly.
 * If you missed some guys, you will also lose 2 points each time. And your missed
 tracker will track it. When it comes to 5, the game will be restarted (You lose).
+
 ### Player
 ![alt text](https://github.com/strawberrrries-Syl/2DGameEx6/blob/master/Assets/hand.png) 
+
 Your hand! (Basically, your avatar). You can control this with the AD or direction keys (←, →). You can only move horizontally
+
 ### Scores and Process
 * Three trackers.
 * “Process here” will tell you how far from the end of feeding you are now. This means that the percentage you finished feeding.
